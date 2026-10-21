@@ -7,15 +7,15 @@ config:
 backend:
   replicaCount: 2
   image:
-    tag: "1.2.0"
+    tag: "1.2.1"
 
 frontend:
   image:
-    tag: "1.2.0"
+    tag: "1.2.1"
 
 worker:
   image:
-    tag: "1.2.0"
+    tag: "1.2.1"
 
 # Helm hooks and tests do not fit the Argo CD sync model here:
 # the pre-upgrade hook would run before the database exists.
