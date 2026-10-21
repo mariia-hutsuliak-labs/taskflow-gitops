@@ -50,3 +50,10 @@ app.kubernetes.io/part-of: taskflow
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
+
+{{/*
+Ім'я Secret: наявний (existingSecret) або створюваний чартом.
+*/}}
+{{- define "taskflow.secretName" -}}
+{{- default (printf "%s-secret" (include "taskflow.fullname" .)) .Values.existingSecret }}
+{{- end }}

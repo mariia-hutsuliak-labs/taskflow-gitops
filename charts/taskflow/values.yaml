@@ -12,6 +12,10 @@ config:
   # Без Ingress: http://localhost:8000 (через kubectl port-forward).
   apiUrl: http://localhost:8000
 
+# Name of a pre-created Secret. If set, the chart does not render its own Secret.
+# The Secret must contain the keys POSTGRES_PASSWORD and DATABASE_URL.
+existingSecret: ""
+
 # Secret. Реальні паролі в файлах значень не зберігаємо:
 # для prod пароль передається через --set secret.postgresPassword=...
 # Значення нижче - навчальний пароль лише для локального dev.
