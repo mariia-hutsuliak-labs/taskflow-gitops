@@ -122,3 +122,9 @@ tests:
     repository: busybox
     tag: "1.36"
     pullPolicy: IfNotPresent
+
+# Progressive delivery for backend (Argo Rollouts).
+# When enabled, a Rollout replaces the backend Deployment.
+rollout:
+  enabled: false
+  strategy: {}
