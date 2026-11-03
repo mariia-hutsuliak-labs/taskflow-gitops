@@ -11,5 +11,6 @@ spec:
     {{- include "taskflow.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: backend
   ports:
-    - port: {{ .Values.backend.service.port }}
+    - name: http
+      port: {{ .Values.backend.service.port }}
       targetPort: {{ .Values.backend.service.port }}

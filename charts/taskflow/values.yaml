@@ -30,6 +30,8 @@ backend:
     pullPolicy: IfNotPresent
   service:
     port: 8000
+  # Share of requests answered with HTTP 500 (0-1). Used to demo a bad release.
+  failRate: "0"
   resources:
     requests:
       cpu: 100m
@@ -128,3 +130,8 @@ tests:
 rollout:
   enabled: false
   strategy: {}
+
+# Prometheus metrics: ServiceMonitor for the backend.
+metrics:
+  enabled: false
+  path: /metrics
