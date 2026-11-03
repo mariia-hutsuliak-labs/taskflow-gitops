@@ -5,7 +5,7 @@ config:
   apiUrl: http://localhost:8000
 
 backend:
-  replicaCount: 5
+  replicaCount: 8
   image:
     tag: "1.7.0"
 
