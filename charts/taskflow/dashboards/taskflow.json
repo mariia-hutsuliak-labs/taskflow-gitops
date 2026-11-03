@@ -6,7 +6,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 39,
-  "version": 2,
+  "version": 3,
   "editable": true,
   "refresh": "10s",
   "time": {
@@ -305,7 +305,8 @@
             "fillOpacity": 10,
             "showPoints": "never"
           },
-          "min": 0
+          "min": 0,
+          "max": 1
         },
         "overrides": []
       },
