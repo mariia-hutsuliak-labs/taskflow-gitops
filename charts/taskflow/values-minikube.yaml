@@ -8,6 +8,8 @@ backend:
   replicaCount: 5
   image:
     tag: "1.7.0"
+  # Share of requests answered with HTTP 500 (0-1); non-zero only to demo a bad release.
+  failRate: "0"
 
 frontend:
   image:
@@ -26,19 +28,24 @@ hooks:
 tests:
   enabled: false
 
+metrics:
+  enabled: true
 
 # Canary release of the backend with Argo Rollouts.
+# The decision to continue is made by the analysis step, not by a manual promote.
 rollout:
   enabled: true
+  analysis:
+    enabled: true
+    prometheusAddress: http://kps-prometheus.monitoring:9090
+    selector: 'namespace="taskflow"'
   strategy:
     canary:
       steps:
         - setWeight: 20
-        - pause: {}
+        - pause: {duration: 30s}
+        - analysis:
+            templates:
+              - templateName: taskflow-success-rate
         - setWeight: 60
         - pause: {duration: 30s}
-        - setWeight: 80
-        - pause: {duration: 30s}
-
-metrics:
-  enabled: true

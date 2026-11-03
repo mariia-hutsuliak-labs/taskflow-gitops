@@ -129,6 +129,11 @@ tests:
 # When enabled, a Rollout replaces the backend Deployment.
 rollout:
   enabled: false
+  # Metric-based analysis (AnalysisTemplate), used from canary steps.
+  analysis:
+    enabled: false
+    prometheusAddress: http://kps-prometheus.monitoring:9090
+    selector: 'namespace="taskflow"'
   strategy: {}
 
 # Prometheus metrics: ServiceMonitor for the backend.
