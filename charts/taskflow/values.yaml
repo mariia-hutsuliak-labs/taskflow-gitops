@@ -140,3 +140,6 @@ rollout:
 metrics:
   enabled: false
   path: /metrics
+  # PrometheusRule: alert when the 5xx share is above 5%.
+  alerts:
+    enabled: false

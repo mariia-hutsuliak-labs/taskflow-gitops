@@ -7,7 +7,7 @@ config:
 backend:
   replicaCount: 5
   image:
-    tag: "1.8.0"
+    tag: "1.7.0"
   # Share of requests answered with HTTP 500 (0-1); non-zero only to demo a bad release.
   failRate: "0"
 
@@ -30,6 +30,8 @@ tests:
 
 metrics:
   enabled: true
+  alerts:
+    enabled: true
 
 # Canary release of the backend with Argo Rollouts.
 # The decision to continue is made by the analysis step, not by a manual promote.

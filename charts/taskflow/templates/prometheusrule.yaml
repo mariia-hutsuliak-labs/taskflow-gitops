@@ -1,0 +1,22 @@
+{{- if .Values.metrics.alerts.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "taskflow.fullname" . }}-alerts
+  labels:
+    {{- include "taskflow.labels" . | nindent 4 }}
+spec:
+  groups:
+    - name: taskflow
+      rules:
+        - alert: TaskflowHighErrorRate
+          expr: |
+            sum(rate(http_requests_total{namespace="{{ .Release.Namespace }}",status=~"5.."}[1m]))
+            /
+            sum(rate(http_requests_total{namespace="{{ .Release.Namespace }}"}[1m])) > 0.05
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "taskflow: more than 5% of responses are 5xx"
+{{- end }}
