@@ -6,7 +6,7 @@
   ],
   "timezone": "browser",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
   "editable": true,
   "refresh": "10s",
   "time": {
@@ -86,7 +86,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(rate(http_requests_total{namespace=\"taskflow\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{namespace=\"taskflow\"}[1m]))",
+          "expr": "(sum(rate(http_requests_total{namespace=\"taskflow\",status=~\"5..\"}[1m])) or vector(0)) / sum(rate(http_requests_total{namespace=\"taskflow\"}[1m]))",
           "instant": false
         }
       ],
@@ -293,7 +293,7 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "expr": "sum(rate(http_requests_total{namespace=\"taskflow\",status=~\"5..\"}[1m])) / sum(rate(http_requests_total{namespace=\"taskflow\"}[1m]))",
+          "expr": "(sum(rate(http_requests_total{namespace=\"taskflow\",status=~\"5..\"}[1m])) or vector(0)) / sum(rate(http_requests_total{namespace=\"taskflow\"}[1m]))",
           "legendFormat": "5xx share"
         }
       ],
