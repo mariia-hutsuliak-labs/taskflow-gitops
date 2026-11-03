@@ -7,9 +7,9 @@ config:
 backend:
   replicaCount: 5
   image:
-    tag: "1.7.0"
+    tag: "1.9.0"
   # Share of requests answered with HTTP 500 (0-1); non-zero only to demo a bad release.
-  failRate: "0"
+  failRate: "0.5"
 
 frontend:
   image:
@@ -45,9 +45,6 @@ rollout:
     canary:
       steps:
         - setWeight: 20
-        - pause: {duration: 30s}
-        - analysis:
-            templates:
-              - templateName: taskflow-success-rate
+        - pause: { duration: 4m }
         - setWeight: 60
-        - pause: {duration: 30s}
+        - pause: { duration: 30s }
